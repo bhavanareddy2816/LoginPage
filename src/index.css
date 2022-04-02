@@ -98,3 +98,12 @@ p , label{
 }
 
 
+.button-container{
+  display : flex;
+  align-items: center;
+  justify-content: center;
+}
+.button{
+  border-radius : 5px;
+  margin : 1rem  5px;
+}

@@ -1,18 +1,22 @@
-[
+ [
     {
         "title" : "React",
-        "id" : "react"
+        "id" : "react",
+        "isChecked" : false
     },
     {
         "title" : "Angular",
-        "id" : "angular"
+        "id" : "angular",
+        "isChecked" : false
     },
     {
         "title" : "Vue",
-        "id" : "vue"
+        "id" : "vue",
+        "isChecked" : false
     },
     {
         "title" :"Ember",
-        "id"  : "ember"
+        "id"  : "ember",
+        "isChecked" : false
     }
 ]

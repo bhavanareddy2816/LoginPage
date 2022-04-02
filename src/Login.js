@@ -15,8 +15,10 @@ const Login = () => {
   const onChangeHandler = (e) => {
       const {name , value} = e.target;
       setFormValues({...formvalues , [name] : value})
+      console.log(formvalues);
   }
 
+  
 // submitting form
   const onSubmitHandler = (e) => {
       e.preventDefault();
@@ -33,20 +35,15 @@ const Login = () => {
     }
   } , [formErrors])
 
+  
   //Navigating to other components based on the authorization result
-  const onClickHandler = () => {
-    if(isAuth){
-        navigate("/home");
-    } else {
-        navigate("/");
-    }
-}
+  
+
 
  //Form validation
   const validate = (values) => {
     const errors = {};
     const regex = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
-    
     if(!values.email) {
         errors.email = "Email is Required";
     }else if(!regex.test(values.email)){
@@ -54,11 +51,21 @@ const Login = () => {
     }
     if(!values.password) {
         errors.password = "Password is Required";
+    }if(values.password.length > 5 ){
+      errors.password = "Password is too length";
+      
     }
-
     return errors;
   }
+
   
+ const onClickHandler = () => {
+    if(isAuth){
+        navigate("/home");
+    } else {
+       navigate("/");
+    }
+}
   return (
    <div className='login'>
        <div className='card container'>

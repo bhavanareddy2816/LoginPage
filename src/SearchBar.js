@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
 
 import SearchIcon from '@material-ui/icons/Search';
-const SearchBar = ({ data }) => {
+import Dropdown from './Dropdown';
+const SearchBar = ({ data, isSearchable, setSearchable, isMultiSelect, setMultiSelect }) => {
     const [filteredData, setFilteredData] = useState([]);
-    const [isSearchable, setIsSearchable] = useState(true);
-    const[isChecked , setIsChecked ] = useState(false);
-    
+
     //Filtering the dropdown options as per the enterd value
     const filterHandler = (event) => {
         const searchWord = event.target.value;
@@ -17,14 +16,9 @@ const SearchBar = ({ data }) => {
         }
     }
 
-    const onCheckHandler = (e) => {
-      if(isChecked === false){
-          setIsChecked(true)
-      }else{
-          setIsChecked(false);
-      }
-        
-    }
+    
+
+
     return (
         <div className='main'>
             <div className='search'>
@@ -33,24 +27,12 @@ const SearchBar = ({ data }) => {
                         <input type='text' placeholder='Enter a name...' onChange={filterHandler}></input>
                         <div className='searchIcon'><SearchIcon /></div>
                     </div>
+
                 }
-            
-                {filteredData.length !== 0 && (
-                    <div className='dataresult'>
-                        <div className='item'>
-                            <input type="checkbox" className="form-check-input" name = "allselect" onChange={onCheckHandler}></input>
-                            <label>All Select</label>
-                        </div>
-                        {filteredData.map((item) => {
-                            const { id, title } = item
-                            return (
-                                <div className='item' key={id} >
-                                    <input type="checkbox" className="form-check-input"  name={title} onChange={onCheckHandler}></input>
-                                    <p>{title}</p>
-                                </div>
-                            )
-                        })}
-                    </div>
+
+
+                {filteredData.length !== 0 && isMultiSelect && (
+                    <Dropdown filteredData={filteredData}/>
                 )
                 }
             </div>
@@ -58,4 +40,4 @@ const SearchBar = ({ data }) => {
     )
 }
 
-export default SearchBar
+export default SearchBar;
